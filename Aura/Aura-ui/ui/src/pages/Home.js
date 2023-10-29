@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { format } from 'date-fns';
 import './VerticalTabs.css';
-import VerticalTabs from './VerticalTabs';
-import HomeBanner from './HomeBanner';
+import VerticalTabs from '../components/VerticalTabs';
+import HomeBanner from '../components/HomeBanner';
 import { css } from "@emotion/react";
 import { SyncLoader } from "react-spinners";
 
