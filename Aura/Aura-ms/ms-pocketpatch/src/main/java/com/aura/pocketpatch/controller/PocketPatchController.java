@@ -52,6 +52,7 @@ public class PocketPatchController {
                         .body(new Response<>(PocketPatchConstants.ERROR_MESSAGE, null, 400));
             } else {
                 MonthlyStatementResponseDto response = new MonthlyStatementResponseDto(expenses,
+                        ExpenseCalculatorService.calculateSalary(expenses),
                         ExpenseCalculatorService.calculateDebitSum(expenses),
                         ExpenseCalculatorService.calculateCreditSum(expenses),
                         ExpenseCalculatorService.calculateBalance(expenses));

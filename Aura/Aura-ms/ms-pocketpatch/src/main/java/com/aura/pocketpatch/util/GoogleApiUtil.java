@@ -84,7 +84,7 @@ public class GoogleApiUtil {
         reqStringBuilder.append(reqDto.getMonth());
         reqStringBuilder.append("_");
         reqStringBuilder.append(reqDto.getYear());
-        reqStringBuilder.append("!B10:F");
+        reqStringBuilder.append("!B11:F");
         // reqStringBuilder.append(TEMPLATE_RANGE);
 
         final String range = reqStringBuilder.toString();

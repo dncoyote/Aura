@@ -15,6 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class MonthlyStatementResponseDto {
     private List<MonthlyStatement> data;
+    private double salaryAmount;
     private double debitAmount;
     private double creditAmount;
     private double remainingAmount;
