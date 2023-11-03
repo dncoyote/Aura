@@ -45,6 +45,8 @@ const ExpenseTracker = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState(new Date().toLocaleString('default', { month: 'long' }));
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [totalSelectedAmount, setTotalSelectedAmount] = useState(0);
 
   const handleMonthChange = (event) => {
     setSelectedMonth(event.target.value);
@@ -61,6 +63,17 @@ const ExpenseTracker = () => {
   setDebitAmount(0);
   setRemainingAmount(0);
   };
+
+const calculateTotalAmount = (selectedRows) => {
+  let totalAmount = 0;
+  for (const id of selectedRows) {
+    const selectedRow = expenses.find((row) => row.id === id);
+    if (selectedRow) {
+      totalAmount += selectedRow.amount;
+    }
+  }
+  return totalAmount;
+};
 
   useEffect(() => {
     setIsLoading(true);
@@ -154,8 +167,7 @@ const ExpenseTracker = () => {
       headerName: "Date",
       flex: 1,
      valueGetter: (params) => {
-      const date = params.row.date; // Get the date from the row
-      // Format the date using date-fns
+      const date = params.row.date;
       return format(new Date(date), 'dd-MMMM-yyyy');
     },
   },
@@ -417,11 +429,14 @@ const ExpenseTracker = () => {
             color: `${colors.grey[100]} !important`,
           },
         }}
-      >  <DataGrid rows={expenses} columns={columns} components={{ Toolbar: GridToolbar }} /></Box></>
+       
+      >   <Typography variant="h6">SUM: ₹{totalSelectedAmount}</Typography>
+      <DataGrid checkboxSelection rows={expenses} columns={columns} components={{ Toolbar: GridToolbar }}
+  onSelectionModelChange={(selectionModel) => {
+    setSelectedRows(selectionModel);
+    const totalAmount = calculateTotalAmount(selectionModel);
+    setTotalSelectedAmount(totalAmount);}}/></Box></>
         ) : (
-          // <Typography variant="body1" color="error">
-          //   No Data Available
-          // </Typography>
           <Alert severity="info">
   <AlertTitle>Info</AlertTitle>
   No data available for <strong>{selectedMonth}, {selectedYear}</strong>
