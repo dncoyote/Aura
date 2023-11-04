@@ -4,24 +4,18 @@ import { format } from 'date-fns';
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { tokens } from "../../theme";
-import { mockDataContacts } from "../../data/mockData";
 import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
-import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -105,11 +99,6 @@ const calculateTotalAmount = (selectedRows) => {
         setIsLoading(false);
       }
     }
-
-    const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return format(date, 'dd-MMMM-yyyy');
-  };
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5 },
