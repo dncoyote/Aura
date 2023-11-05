@@ -19,9 +19,17 @@ public class ExpenseCalculatorService {
                 .sum();
     }
 
+    public static double calculateSalary(List<MonthlyStatement> expenses) {
+        return expenses.stream()
+                .filter(expense -> "SALARY".equals(expense.getType()))
+                .mapToDouble(MonthlyStatement::getAmount)
+                .sum();
+    }
+
     public static double calculateBalance(List<MonthlyStatement> expenses) {
         double debitSum = calculateDebitSum(expenses);
+        double salarySum = calculateSalary(expenses);
         double creditSum = calculateCreditSum(expenses);
-        return creditSum - debitSum;
+        return salarySum - debitSum + creditSum;
     }
 }

@@ -39,3 +39,7 @@ build/
 ### Logs ###
 *.log
 *.gz
+
+### credentials ###
+tokens/
+Aura-ms/ms-pocketpatch/src/main/resources/credentials.json
