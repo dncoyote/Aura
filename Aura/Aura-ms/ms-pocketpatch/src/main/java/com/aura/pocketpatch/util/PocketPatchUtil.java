@@ -64,7 +64,7 @@ public class PocketPatchUtil implements ApplicationRunner {
 
         for (Object table : tables) {
             String tableName = (String) table;
-            if (!tableName.contains("seq")) {
+            if (!tableName.contains("seq") && !tableName.contains("user")) {
                 Query truncateQuery = entityManager.createNativeQuery("TRUNCATE TABLE " +
                         tableName);
                 truncateQuery.executeUpdate();
