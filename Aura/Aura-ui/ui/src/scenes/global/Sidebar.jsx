@@ -17,7 +17,7 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
-import FaceIcon from '@mui/icons-material/Face';
+import FaceRetouchingNaturalIcon from '@mui/icons-material/FaceRetouchingNatural';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -155,7 +155,7 @@ const Sidebar = () => {
             <Item
               title="Habit"
               to="/habit"
-              icon={<FaceIcon />}
+              icon={<FaceRetouchingNaturalIcon />}
               selected={selected}
               setSelected={setSelected}
             />
