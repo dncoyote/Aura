@@ -7,6 +7,7 @@ import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
 import ActivityCalendar from "react-activity-calendar";
+import GitHubCalendar from 'react-github-calendar';
 
 
 const Habit = () => {
@@ -53,6 +54,14 @@ const Habit = () => {
           },
         }}
       >
+        
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          Github
+        </Typography>
+<GitHubCalendar username="dncoyote" year='2023' theme={explicitTheme}/>
+<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          Reading
+        </Typography>
          <ActivityCalendar
       data={[
         {
