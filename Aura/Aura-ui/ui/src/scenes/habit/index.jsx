@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import ActivityCalendar from "react-activity-calendar";
 import GitHubCalendar from 'react-github-calendar';
 import axios from 'axios';
+import { Tooltip as MuiTooltip } from '@mui/material';
 
 const Habit = () => {
   const theme = useTheme();
@@ -69,11 +70,16 @@ const Habit = () => {
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Github
         </Typography>
-<GitHubCalendar username="dncoyote" year='2023' theme={explicitTheme}/>
+<GitHubCalendar username="dncoyote" weekStart={1} year='2023' theme={explicitTheme} renderBlock={(block, activity) => (
+    <MuiTooltip
+      title={`${activity.count} activities on ${activity.date}`}
+    >
+      {block}
+    </MuiTooltip>)}/>
 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
 Reading
         </Typography>
-        <ActivityCalendar year='2023'
+        <ActivityCalendar weekStart={1}
         data={habitData}
         labels={{
         legend: {
@@ -97,7 +103,12 @@ Reading
         totalCount: "{{count}} times in {{year}}",
         weekdays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
       }}
-      theme={explicitTheme}/>
+      theme={explicitTheme} renderBlock={(block, activity) => (
+        <MuiTooltip
+          title={`${activity.count} activities on ${activity.date}`}
+        >
+          {block}
+        </MuiTooltip>)}/>
       </Box>
     </Box>
   );
