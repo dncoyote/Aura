@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import org.springframework.data.annotation.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +24,7 @@ public class HabitData {
 
     private String habitId;
     private int count;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private int level;
 }

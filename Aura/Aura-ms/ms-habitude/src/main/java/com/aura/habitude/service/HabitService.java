@@ -56,7 +56,7 @@ public class HabitService {
 
     private HabitDataResponseDto mapToHabitDataResponse(HabitData habitData) {
         return HabitDataResponseDto.builder()
-                .id(habitData.getId())
+                .habitId(habitData.getId())
                 .count(habitData.getCount())
                 .date(habitData.getDate())
                 .level(habitData.getLevel())
