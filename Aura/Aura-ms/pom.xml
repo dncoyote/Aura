@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>ms-pocketpatch</module>
+        <module>ms-habitude</module>
         <!-- <module>ms-gateway</module> -->
     </modules>
     <modelVersion>4.0.0</modelVersion>
