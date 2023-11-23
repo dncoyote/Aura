@@ -153,6 +153,13 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
+              title="Create Habit"
+              to="/createhabit"
+              icon={<FaceRetouchingNaturalIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
               title="Habit"
               to="/habit"
               icon={<FaceRetouchingNaturalIcon />}

@@ -109,6 +109,40 @@ Reading
         >
           {block}
         </MuiTooltip>)}/>
+
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+Reading
+        </Typography>
+        <ActivityCalendar weekStart={1}
+        data={habitData}
+        labels={{
+        legend: {
+          less: "Less",
+          more: "More"
+        },
+        months: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ],
+        totalCount: "{{count}} times in {{year}}",
+        weekdays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+      }}
+      theme={explicitTheme} renderBlock={(block, activity) => (
+        <MuiTooltip
+          title={`${activity.count} activities on ${activity.date}`}
+        >
+          {block}
+        </MuiTooltip>)}/>
       </Box>
     </Box>
   );
