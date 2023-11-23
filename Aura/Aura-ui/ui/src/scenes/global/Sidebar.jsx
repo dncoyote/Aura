@@ -159,9 +159,16 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+             <Item
               title="Habit"
               to="/habit"
+              icon={<FaceRetouchingNaturalIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Activity Tracker"
+              to="/activity"
               icon={<FaceRetouchingNaturalIcon />}
               selected={selected}
               setSelected={setSelected}

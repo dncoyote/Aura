@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aura.habitude.DTO.HabitActivityResponseDto;
 import com.aura.habitude.DTO.ActivityRequestDto;
 import com.aura.habitude.DTO.HabitRequestDto;
+import com.aura.habitude.DTO.HabitResponseDto;
 import com.aura.habitude.model.Activity;
 import com.aura.habitude.service.HabitService;
 
@@ -42,6 +43,12 @@ public class HabitudeController {
                 habitDataRequest.getDate(), habitDataRequest.getLevel());
 
         habitService.saveActivity(habitDataRequest.getHabitId(), activity);
+    }
+
+    @GetMapping("/habit")
+    @ResponseStatus(HttpStatus.OK)
+    public List<HabitResponseDto> getHabits() {
+        return habitService.getHabits();
     }
 
     @GetMapping(ACTIVITIES)

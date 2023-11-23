@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.aura.habitude.DTO.HabitActivityResponseDto;
 import com.aura.habitude.DTO.ActivityResponseDto;
 import com.aura.habitude.DTO.HabitRequestDto;
+import com.aura.habitude.DTO.HabitResponseDto;
 import com.aura.habitude.model.Habit;
 import com.aura.habitude.model.Activity;
 import com.aura.habitude.repository.HabitRepository;
@@ -89,6 +90,14 @@ public class HabitService {
                 .collect(Collectors.toList());
     }
 
+    public List<HabitResponseDto> getHabits() {
+        List<Habit> habits = habitRepository.findAll();
+
+        return habits.stream()
+                .map(this::mapToHabitResponseDto)
+                .collect(Collectors.toList());
+    }
+
     private HabitActivityResponseDto mapToHabitActivityResponseDto(Habit habit) {
         List<ActivityResponseDto> activities = habit.getActivities().stream()
                 .map(activity -> new ActivityResponseDto(activity.getCount(), activity.getDate(),
@@ -99,6 +108,14 @@ public class HabitService {
                 .habitId(habit.getId())
                 .habitName(habit.getName())
                 .activities(activities)
+                .build();
+    }
+
+    private HabitResponseDto mapToHabitResponseDto(Habit habit) {
+        return HabitResponseDto.builder()
+                .habitId(habit.getId())
+                .name(habit.getName())
+                .description(habit.getDescription())
                 .build();
     }
 }
