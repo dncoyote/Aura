@@ -1,9 +1,6 @@
 package com.aura.habitude.service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,12 +11,10 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.aura.habitude.DTO.HabitActivityResponseDto;
-import com.aura.habitude.DTO.ActivityRequestDto;
 import com.aura.habitude.DTO.ActivityResponseDto;
 import com.aura.habitude.DTO.HabitRequestDto;
 import com.aura.habitude.model.Habit;
 import com.aura.habitude.model.Activity;
-import com.aura.habitude.repository.HabitDataRepository;
 import com.aura.habitude.repository.HabitRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -54,12 +49,9 @@ public class HabitService {
         endOfYearActivity.setDate(getDate(currentYear, Calendar.DECEMBER, 31));
         endOfYearActivity.setLevel(0);
 
-        // Initialize the activities list in the habit
         habit.setActivities(new ArrayList<>(List.of(startOfYearActivity, endOfYearActivity)));
 
-        // Save the habit and associated activities to the database
         habitRepository.save(habit);
-
     }
 
     private Date getDate(int year, int month, int day) {
@@ -76,13 +68,11 @@ public class HabitService {
         if (optionalHabit.isPresent()) {
             Habit habit = optionalHabit.get();
 
-            // Add the activity to the habit's activities list
             if (habit.getActivities() == null) {
                 habit.setActivities(new ArrayList<>());
             }
             habit.getActivities().add(activity);
 
-            // Save the updated habit
             habitRepository.save(habit);
 
             return activity;
@@ -109,15 +99,6 @@ public class HabitService {
                 .habitId(habit.getId())
                 .habitName(habit.getName())
                 .activities(activities)
-                .build();
-    }
-
-    private ActivityResponseDto mapToHabitDataResponse(Activity habitData) {
-        return ActivityResponseDto.builder()
-                // .habitId(habitData.getId())
-                .count(habitData.getCount())
-                .date(habitData.getDate())
-                .level(habitData.getLevel())
                 .build();
     }
 }
