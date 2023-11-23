@@ -6,5 +6,5 @@ public class ApiEndpoints {
     public static final String API_PREFIX = "/aura/habitude" + API_BASE;
 
     // Define specific endpoint paths as constants
-    public static final String HABITS = "/habits";
+    public static final String ACTIVITIES = "/activities";
 }

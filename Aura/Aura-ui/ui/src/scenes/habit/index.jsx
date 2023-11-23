@@ -24,7 +24,7 @@ const Habit = () => {
   useEffect(() => {
     const fetchHabitData = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/aura/habitude/api/v1/habits');
+        const response = await axios.get('http://localhost:8080/aura/habitude/api/v1/activities');
         setHabitData(response.data);
         console.info(response.data);
       } catch (error) {
@@ -76,73 +76,36 @@ const Habit = () => {
     >
       {block}
     </MuiTooltip>)}/>
-<Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-Reading
-        </Typography>
-        <ActivityCalendar weekStart={1}
-        data={habitData}
-        labels={{
-        legend: {
-          less: "Less",
-          more: "More"
-        },
-        months: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
-        ],
-        totalCount: "{{count}} times in {{year}}",
-        weekdays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-      }}
-      theme={explicitTheme} renderBlock={(block, activity) => (
-        <MuiTooltip
-          title={`${activity.count} activities on ${activity.date}`}
-        >
-          {block}
-        </MuiTooltip>)}/>
-
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-Reading
-        </Typography>
-        <ActivityCalendar weekStart={1}
-        data={habitData}
-        labels={{
-        legend: {
-          less: "Less",
-          more: "More"
-        },
-        months: [
-          "Jan",
-          "Feb",
-          "Mar",
-          "Apr",
-          "May",
-          "Jun",
-          "Jul",
-          "Aug",
-          "Sep",
-          "Oct",
-          "Nov",
-          "Dec"
-        ],
-        totalCount: "{{count}} times in {{year}}",
-        weekdays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-      }}
-      theme={explicitTheme} renderBlock={(block, activity) => (
-        <MuiTooltip
-          title={`${activity.count} activities on ${activity.date}`}
-        >
-          {block}
-        </MuiTooltip>)}/>
+    {habitData.map((habit) => (
+          <div key={habit.habitId}>
+            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+              {habit.habitName}
+            </Typography>
+            <ActivityCalendar
+              weekStart={1}
+              data={habit.activities}
+              labels={{
+                legend: {
+                  less: "Less",
+                  more: "More"
+                },
+                months: [
+                  "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+                ],
+                totalCount: "{{count}} times in {{year}}",
+                weekdays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+              }}
+              theme={explicitTheme}
+              renderBlock={(block, activity) => (
+                <MuiTooltip
+                  title={`${activity.count} activities on ${activity.date}`}
+                >
+                  {block}
+                </MuiTooltip>
+              )}
+            />
+          </div>
+        ))}
       </Box>
     </Box>
   );
