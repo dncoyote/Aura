@@ -15,6 +15,19 @@ const Habit = () => {
 
   const columns = [
     {
+      field: "serialNumber",
+      headerName: "#",
+      flex: 1,
+      renderCell: (params) => {
+        // Assuming that the row object has a unique identifier like habitId
+        const rowId = params.row.habitId;
+        // Find the index of the row in the array
+        const rowIndex = habits.findIndex((habit) => habit.habitId === rowId);
+        // Display the serial number starting from 1
+        return rowIndex + 1;
+      },
+    },
+    {
       field: "name",
       headerName: "Name",
       flex: 1,
@@ -25,37 +38,37 @@ const Habit = () => {
       headerName: "Description",
       flex: 1,
     },
-    {
-      field: "action",
-      headerName: "Action",
-      flex: 1,
-      renderCell: ({ row: { access } }) => {
-        return (
-          <Box
-            width="60%"
-            m="0 auto"
-            p="5px"
-            display="flex"
-            justifyContent="center"
-            backgroundColor={
-              access === "admin"
-                ? colors.greenAccent[600]
-                : access === "manager"
-                ? colors.greenAccent[700]
-                : colors.greenAccent[700]
-            }
-            borderRadius="4px"
-          >
-            {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
-            {access === "manager" && <SecurityOutlinedIcon />}
-            {access === "user" && <LockOpenOutlinedIcon />}
-            <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-              {access}
-            </Typography>
-          </Box>
-        );
-      },
-    },
+    // {
+    //   field: "action",
+    //   headerName: "Action",
+    //   flex: 1,
+    //   renderCell: ({ row: { access } }) => {
+    //     return (
+    //       <Box
+    //         width="60%"
+    //         m="0 auto"
+    //         p="5px"
+    //         display="flex"
+    //         justifyContent="center"
+    //         backgroundColor={
+    //           access === "admin"
+    //             ? colors.greenAccent[600]
+    //             : access === "manager"
+    //             ? colors.greenAccent[700]
+    //             : colors.greenAccent[700]
+    //         }
+    //         borderRadius="4px"
+    //       >
+    //         {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
+    //         {access === "manager" && <SecurityOutlinedIcon />}
+    //         {access === "user" && <LockOpenOutlinedIcon />}
+    //         <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
+    //           {access}
+    //         </Typography>
+    //       </Box>
+    //     );
+    //   },
+    // },
   ];
 
   useEffect(() => {
@@ -104,7 +117,7 @@ const Habit = () => {
           },
         }}
       >
-        <DataGrid rows={habits} columns={columns} />
+        <DataGrid rows={habits} columns={columns} getRowId={(row) => row.habitId}/>
       </Box>
     </Box>
   );
