@@ -5,7 +5,9 @@ import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
 import Team from "./scenes/team";
 import ExpenseTracker from "./scenes/expensetracker";
+import Activity from "./scenes/activity";
 import Habit from "./scenes/habit";
+import CreateHabit from "./scenes/createhabit";
 import Invoices from "./scenes/invoices";
 import Contacts from "./scenes/contacts";
 import Bar from "./scenes/bar";
@@ -35,7 +37,9 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/expensetracker" element={<ExpenseTracker />} />
               <Route path="/team" element={<Team />} />
+              <Route path="/createhabit" element={<CreateHabit />} />
               <Route path="/habit" element={<Habit />} />
+              <Route path="/activity" element={<Activity />} />
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/invoices" element={<Invoices />} />
               <Route path="/form" element={<Form />} />

@@ -11,15 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aura.habitude.DTO.HabitDataRequestDto;
-import com.aura.habitude.DTO.HabitDataResponseDto;
+import com.aura.habitude.DTO.HabitActivityResponseDto;
+import com.aura.habitude.DTO.ActivityRequestDto;
 import com.aura.habitude.DTO.HabitRequestDto;
+import com.aura.habitude.DTO.HabitResponseDto;
+import com.aura.habitude.model.Activity;
 import com.aura.habitude.service.HabitService;
 
 import org.springframework.http.HttpStatus;
 
 import static com.aura.habitude.common.ApiEndpoints.API_PREFIX;
-import static com.aura.habitude.common.ApiEndpoints.HABITS;;
+import static com.aura.habitude.common.ApiEndpoints.ACTIVITIES;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
@@ -36,14 +38,23 @@ public class HabitudeController {
 
     @PostMapping("/habittracker/habitdata")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createHabitData(@RequestBody HabitDataRequestDto habitDataRequest) {
-        habitService.createHabitData(habitDataRequest);
+    public void createHabitData(@RequestBody ActivityRequestDto habitDataRequest) {
+        Activity activity = new Activity(habitDataRequest.getHabitId(), habitDataRequest.getCount(),
+                habitDataRequest.getDate(), habitDataRequest.getLevel());
+
+        habitService.saveActivity(habitDataRequest.getHabitId(), activity);
     }
 
-    @GetMapping(HABITS)
+    @GetMapping("/habit")
     @ResponseStatus(HttpStatus.OK)
-    public List<HabitDataResponseDto> getAllHabitData() {
-        return habitService.getAllHabitData();
+    public List<HabitResponseDto> getHabits() {
+        return habitService.getHabits();
+    }
+
+    @GetMapping(ACTIVITIES)
+    @ResponseStatus(HttpStatus.OK)
+    public List<HabitActivityResponseDto> getAllActivities() {
+        return habitService.getAllActivities();
     }
 
 }
